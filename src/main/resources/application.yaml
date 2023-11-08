@@ -1,0 +1,73 @@
+logging:
+  level:
+    ru.krista.fm.ria.messenger: DEBUG
+
+server:
+  port: 8580
+
+db:
+  url: jdbc:postgresql://localhost:5432/postgres
+  driver: org.postgresql.Driver
+  username: postgres
+  password: Byacw2VK
+
+spring:
+  application:
+    name: messenger
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: ${db.url}
+    driver-class-name: ${db.driver}
+    username: ${db.username}
+    password: ${db.password}
+    hikari:
+      idle-timeout: 10000
+      minimum-idle: 10
+      maximum-pool-size: 20
+      connection-timeout: 60000
+      data-source-properties:
+        autoReconnect: true
+        networkTimeout: 120000
+        socketTimeout: 60
+      initialization-fail-timeout: -1
+      validation-timeout: 1000
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      jakarta.persistence.sharedCache.mode: ALL
+  mail:
+    host: "mailsrv.krista.ru"
+    port: 25
+    properties:
+      mail:
+        debug: false
+        sendFrom: "fm-mail@krista.ru"
+        smtp:
+          port: 25
+          auth: false
+          starttls:
+            enable: true
+          ssl:
+            trust: "mailsrv.krista.ru"
+    username: "fm-mail"
+    password: "JDKa2m8MMdD"
+    default-encoding: UTF-8
+  sql:
+    init:
+      continue-on-error: true
+      encoding: UTF-8
+  servlet:
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 30MB
+  kafka:
+    consumer:
+      group-id=app:
+        1:
+
+
+
